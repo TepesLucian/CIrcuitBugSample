@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalCircuitApi::class)
+
 package io.tepeslucian.circuitbugsample
 
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,9 +18,11 @@ import com.slack.circuit.foundation.Circuit
 import com.slack.circuit.foundation.CircuitCompositionLocals
 import com.slack.circuit.foundation.NavigableCircuitContent
 import com.slack.circuit.foundation.rememberCircuitNavigator
+import com.slack.circuit.runtime.ExperimentalCircuitApi
 import com.slack.circuitx.gesturenavigation.GestureNavigationDecorationFactory
 import io.tepeslucian.circuitbugsample.test.ROOT_SCREENS
 import io.tepeslucian.circuitbugsample.test.TestPresenterFactory
+import io.tepeslucian.circuitbugsample.test.TestScreen
 import io.tepeslucian.circuitbugsample.test.TestUiFactory
 
 @Composable
@@ -29,6 +33,7 @@ fun TestApp() {
         Circuit.Builder()
             .addPresenterFactory(TestPresenterFactory())
             .addUiFactory(TestUiFactory())
+            .addAnimatedScreenTransform(TestScreen::class, TestAnimTransform)
             .build()
     }
 
